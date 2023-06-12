@@ -1,0 +1,21 @@
+header {
+    padding: 1em;
+}
+
+.top-nav {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    justify-content: space-around;
+}
+
+.top-nav a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.top-nav a:hover, .top-nav a:focus {
+    text-decoration: underline;
+    color: gold;
+}

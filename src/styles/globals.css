@@ -1,7 +1,18 @@
+@import url('./components/header.css');
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0 1em;
 }
+
+main, header, footer {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
