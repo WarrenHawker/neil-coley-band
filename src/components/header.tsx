@@ -1,12 +1,11 @@
 function Header() {
   return (
     <header>
-      <nav className='top-nav'>
-        <a href=''>Home</a>
-        <a href=''>About Us</a>
-        <a href=''>News and Events</a>
-        <a href=''>Our Music</a>
-        <a href=''>Contact Us</a>
+      <nav className="top-nav">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/news">News and Events</a>
+        <a href="/music">Our Music</a>
       </nav>
     </header>
   );
