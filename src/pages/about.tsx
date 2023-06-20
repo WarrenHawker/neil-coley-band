@@ -1,10 +1,11 @@
 import { createClient } from 'contentful';
 import { useState, useEffect } from 'react';
 import {
-  BandMember,
-  BandSection,
-  ContentfulBandMember,
+  IBandMember,
+  IBandSection,
+  IContentfulBandMember,
 } from '../misc/interfaces';
+import BandMember from '@/components/bandMember';
 
 export const getStaticProps = async () => {
   //checks to see if environment variables are loaded
@@ -32,12 +33,12 @@ export const getStaticProps = async () => {
 };
 
 interface AboutPageProps {
-  bandMembers: ContentfulBandMember[];
+  bandMembers: IContentfulBandMember[];
 }
 
 const About = ({ bandMembers }: AboutPageProps) => {
-  const [members, setMembers] = useState<BandMember[]>([]);
-  const sections: BandSection[] = [
+  const [members, setMembers] = useState<IBandMember[]>([]);
+  const sections: IBandSection[] = [
     'Trumpets',
     'Trombones',
     'Saxophones',
@@ -45,7 +46,7 @@ const About = ({ bandMembers }: AboutPageProps) => {
   ];
 
   useEffect(() => {
-    const newMembers: BandMember[] = bandMembers.map((item) => {
+    const newMembers: IBandMember[] = bandMembers.map((item) => {
       return {
         id: item.sys.id,
         name: item.fields.name,
@@ -63,8 +64,24 @@ const About = ({ bandMembers }: AboutPageProps) => {
   return (
     <>
       <h1>about page</h1>
-      {members.map((member) => (
-        <img key={member.id} src={member.photoURL} />
+
+      {sections.map((section) => (
+        <section className="band-section">
+          <h1 className="section-header">{section}</h1>
+          <div className="band-section-inner">
+            {members
+              .filter((item) => item.section == section)
+              .sort((a, b) => a.position - b.position)
+              .map((member) => (
+                <BandMember
+                  key={member.id}
+                  name={member.name}
+                  instrument={member.instrument}
+                  photoURL={member.photoURL}
+                />
+              ))}
+          </div>
+        </section>
       ))}
     </>
   );

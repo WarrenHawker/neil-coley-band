@@ -1,10 +1,10 @@
-export type BandSection =
+export type IBandSection =
   | 'Trumpets'
   | 'Trombones'
   | 'Saxophones'
   | 'Rhythm and Vocals';
 
-export interface ContentfulBandMember {
+export interface IContentfulBandMember {
   metadata: {};
   sys: {
     id: string;
@@ -19,15 +19,15 @@ export interface ContentfulBandMember {
       };
     };
     position: number;
-    section: BandSection;
+    section: IBandSection;
     instrument: string | undefined;
   };
 }
 
-export interface BandMember {
+export interface IBandMember {
   id: string;
   name: string;
-  section: BandSection;
+  section: IBandSection;
   instrument: string | undefined;
   photoURL: string;
   position: number;
