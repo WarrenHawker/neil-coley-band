@@ -24,6 +24,29 @@ export interface IContentfulBandMember {
   };
 }
 
+export interface IContentfulCarousel {
+  sys: {
+    id: string;
+  };
+  fields: {
+    name: string;
+    photo: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+  };
+}
+
+export interface ICarousel {
+  id: string;
+  name: string;
+  photoURL: string;
+  position: number;
+}
+
 export interface IBandMember {
   id: string;
   name: string;

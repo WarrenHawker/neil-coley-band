@@ -5,6 +5,9 @@
 .band-section-inner {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+  margin: auto;
+  justify-content: center;
+  align-content: center;
   gap: 30px;
 }
 
