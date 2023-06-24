@@ -1,3 +1,6 @@
+import { Document } from '@contentful/rich-text-types';
+import { ReactNode } from 'react';
+
 export type IBandSection =
   | 'Trumpets'
   | 'Trombones'
@@ -5,7 +8,6 @@ export type IBandSection =
   | 'Rhythm and Vocals';
 
 export interface IContentfulBandMember {
-  metadata: {};
   sys: {
     id: string;
   };
@@ -54,4 +56,36 @@ export interface IBandMember {
   instrument: string | undefined;
   photoURL: string;
   position: number;
+}
+
+export interface IContentfulNewsPost {
+  sys: {
+    id: string;
+    createdAt: string;
+  };
+  fields: {
+    slug: string;
+    title: string;
+    body: Document;
+    thumbnail: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+  };
+}
+
+export interface INewsPost {
+  id: string;
+  createdDate: string;
+  title: string;
+  body: Document;
+  thumbnail: string | undefined;
+  slug: string;
+}
+
+export interface RichText {
+  children: ReactNode;
 }

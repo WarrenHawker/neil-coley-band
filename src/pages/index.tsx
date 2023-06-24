@@ -36,15 +36,16 @@ export default function Home({ carousel }: HomePageProps) {
   const [carouselPhotos, setCarouselPhotos] = useState<ICarousel[]>([]);
 
   useEffect(() => {
-    const newCarousel: ICarousel[] = carousel.map((item, index) => {
-      return {
-        id: item.sys.id,
-        name: item.fields.name,
-        photoURL: item.fields.photo.fields.file.url,
-        position: index + 1,
-      };
-    });
-    setCarouselPhotos(newCarousel);
+    setCarouselPhotos(
+      carousel.map((item, index) => {
+        return {
+          id: item.sys.id,
+          name: item.fields.name,
+          photoURL: item.fields.photo.fields.file.url,
+          position: index + 1,
+        };
+      })
+    );
   }, [carousel]);
 
   return (

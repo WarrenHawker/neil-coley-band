@@ -46,17 +46,18 @@ const About = ({ bandMembers }: AboutPageProps) => {
   ];
 
   useEffect(() => {
-    const newMembers: IBandMember[] = bandMembers.map((item) => {
-      return {
-        id: item.sys.id,
-        name: item.fields.name,
-        section: item.fields.section,
-        instrument: item.fields.instrument,
-        photoURL: item.fields.photo.fields.file.url,
-        position: item.fields.position,
-      };
-    });
-    setMembers(newMembers);
+    setMembers(
+      bandMembers.map((item) => {
+        return {
+          id: item.sys.id,
+          name: item.fields.name,
+          section: item.fields.section,
+          instrument: item.fields.instrument,
+          photoURL: item.fields.photo.fields.file.url,
+          position: item.fields.position,
+        };
+      })
+    );
   }, [bandMembers]);
 
   console.log(bandMembers);

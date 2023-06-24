@@ -22,3 +22,11 @@ section {
   max-width: 1500px;
   margin: auto;
 }
+
+.pink {
+  color: pink;
+}
+
+.center {
+  text-align: center;
+}
