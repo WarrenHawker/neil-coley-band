@@ -1,4 +1,5 @@
 import NewsPost from '@/components/newsPost';
+import NewsPostFocused from '@/components/newsPostFocused';
 import { IContentfulNewsPost, INewsPost } from '@/misc/interfaces';
 import { createClient } from 'contentful';
 import { useEffect, useState } from 'react';
@@ -19,7 +20,11 @@ export const getStaticProps = async () => {
   });
 
   //get band members from contentful
-  const response = await client.getEntries({ content_type: 'newsPost' });
+  const response = await client.getEntries({
+    content_type: 'newsPost',
+    //@ts-expect-error
+    order: '-sys.createdAt',
+  });
 
   return {
     props: {
@@ -34,6 +39,8 @@ interface NewsPageProps {
 
 const News = ({ newsPosts }: NewsPageProps) => {
   const [posts, setPosts] = useState<INewsPost[]>([]);
+  const [showOverlay, setShowOverlay] = useState<boolean>(false);
+
   console.log(posts);
 
   useEffect(() => {
@@ -44,18 +51,43 @@ const News = ({ newsPosts }: NewsPageProps) => {
           createdDate: item.sys.createdAt,
           title: item.fields.title,
           body: item.fields.body,
-          thumbnail: item.fields.thumbnail.fields.file.url,
+          thumbnail: item.fields.thumbnail?.fields.file.url,
           slug: item.fields.slug,
+          focused: false,
         };
       })
     );
   }, [newsPosts]);
+
+  const focusPost = (id: string) => {
+    setPosts((prevPosts) => {
+      return prevPosts.map((post) => {
+        if (post.id == id) {
+          return { ...post, focused: true };
+        } else {
+          return { ...post, focused: false };
+        }
+      });
+    });
+    setShowOverlay(true);
+  };
+
   return (
     <>
       <h1>News and Events</h1>
-      {posts.map((post) => (
-        <NewsPost key={post.id} post={post} />
-      ))}
+      <section className="posts-container">
+        {posts.map((post) => (
+          <NewsPost key={post.id} post={post} focusPost={focusPost} />
+        ))}
+      </section>
+
+      <div className={showOverlay ? 'overlay visible' : 'overlay'}>
+        {posts
+          .filter((post) => post.focused == true)
+          .map((post) => (
+            <NewsPostFocused post={post} />
+          ))}
+      </div>
     </>
   );
 };

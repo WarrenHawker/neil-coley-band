@@ -67,13 +67,15 @@ export interface IContentfulNewsPost {
     slug: string;
     title: string;
     body: Document;
-    thumbnail: {
-      fields: {
-        file: {
-          url: string;
-        };
-      };
-    };
+    thumbnail:
+      | {
+          fields: {
+            file: {
+              url: string;
+            };
+          };
+        }
+      | undefined;
   };
 }
 
@@ -84,6 +86,7 @@ export interface INewsPost {
   body: Document;
   thumbnail: string | undefined;
   slug: string;
+  focused: boolean;
 }
 
 export interface RichText {

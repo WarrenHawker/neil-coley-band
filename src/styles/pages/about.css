@@ -14,28 +14,3 @@
 .section-header {
   grid-column: 1/-1;
 }
-
-.band-member {
-  height: 400px;
-}
-
-.band-member-pic {
-  height: 300px;
-  width: auto;
-}
-
-.band-member-pic img {
-  display: block;
-  width: auto;
-  margin: auto;
-  max-height: 300px;
-  max-width: 100%;
-}
-
-.band-member-info h2 {
-  margin-bottom: 0;
-}
-
-.band-member-info p {
-  margin: 0;
-}

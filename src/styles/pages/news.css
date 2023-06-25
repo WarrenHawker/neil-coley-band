@@ -1,0 +1,19 @@
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: grey;
+  display: none;
+}
+
+.overlay.visible {
+  display: block;
+}

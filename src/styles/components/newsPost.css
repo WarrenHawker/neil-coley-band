@@ -1,0 +1,32 @@
+.post {
+  max-width: 400px;
+  height: 400px;
+  padding: 0 1em;
+  cursor: pointer;
+}
+
+.post-title {
+  text-align: center;
+  height: 50px;
+}
+
+.post-thumbnail {
+  height: 200px;
+  margin: auto;
+}
+
+.post-thumbnail img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.post-excerpt {
+  margin-top: 2em;
+}
+
+.learn-more {
+  text-decoration: underline;
+  color: blue;
+}
