@@ -60,14 +60,12 @@ const About = ({ bandMembers }: AboutPageProps) => {
     );
   }, [bandMembers]);
 
-  console.log(bandMembers);
-  console.log(members);
   return (
     <>
       <h1>about page</h1>
 
-      {sections.map((section) => (
-        <section className="band-section">
+      {sections.map((section, index) => (
+        <section className="band-section" key={index}>
           <h1 className="section-header">{section}</h1>
           <div className="band-section-inner">
             {members

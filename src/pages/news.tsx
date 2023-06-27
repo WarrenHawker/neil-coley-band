@@ -86,16 +86,18 @@ const News = ({ newsPosts }: NewsPageProps) => {
         onClick={() => setShowOverlay(false)}
       >
         <article className="focused-post" onClick={(e) => e.stopPropagation()}>
-          <FontAwesomeIcon
-            icon={faWindowClose}
-            id="overlay-close"
-            onClick={() => setShowOverlay(false)}
-          />
           {posts
             .filter((post) => post.focused == true)
             .map((post) => (
               <div key={post.id}>
-                <h1 className="focused-post-title">{post.title}</h1>
+                <h1 className="focused-post-title">
+                  <FontAwesomeIcon
+                    icon={faWindowClose}
+                    id="overlay-close"
+                    onClick={() => setShowOverlay(false)}
+                  />{' '}
+                  {post.title}
+                </h1>
                 <div className="post-image">
                   <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
                 </div>
