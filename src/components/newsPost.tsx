@@ -1,9 +1,6 @@
 import { trimString } from '@/misc/functions';
-import { INewsPost, RichText } from '@/misc/interfaces';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { INewsPost } from '@/misc/interfaces';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-import { BLOCKS, MARKS, Inline, Block } from '@contentful/rich-text-types';
-import { ReactNode } from 'react';
 
 interface NewsPostProps {
   post: INewsPost;
@@ -17,7 +14,6 @@ const NewsPost = ({ post, focusPost }: NewsPostProps) => {
       <div className="post-thumbnail">
         <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
       </div>
-      {/* {documentToReactComponents(post.body)} */}
       <p className="post-excerpt">
         {trimString(documentToPlainTextString(post.body), 80)}...
         <span className="learn-more">Learn more</span>

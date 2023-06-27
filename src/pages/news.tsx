@@ -1,8 +1,10 @@
 import NewsPost from '@/components/newsPost';
-import NewsPostFocused from '@/components/newsPostFocused';
 import { IContentfulNewsPost, INewsPost } from '@/misc/interfaces';
 import { createClient } from 'contentful';
 import { useEffect, useState } from 'react';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 export const getStaticProps = async () => {
   //checks to see if environment variables are loaded
@@ -41,8 +43,6 @@ const News = ({ newsPosts }: NewsPageProps) => {
   const [posts, setPosts] = useState<INewsPost[]>([]);
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
 
-  console.log(posts);
-
   useEffect(() => {
     setPosts(
       newsPosts.map((item: IContentfulNewsPost) => {
@@ -73,7 +73,7 @@ const News = ({ newsPosts }: NewsPageProps) => {
   };
 
   return (
-    <>
+    <main>
       <h1>News and Events</h1>
       <section className="posts-container">
         {posts.map((post) => (
@@ -81,14 +81,32 @@ const News = ({ newsPosts }: NewsPageProps) => {
         ))}
       </section>
 
-      <div className={showOverlay ? 'overlay visible' : 'overlay'}>
-        {posts
-          .filter((post) => post.focused == true)
-          .map((post) => (
-            <NewsPostFocused post={post} />
-          ))}
+      <div
+        className={showOverlay ? 'overlay visible' : 'overlay'}
+        onClick={() => setShowOverlay(false)}
+      >
+        <article className="focused-post" onClick={(e) => e.stopPropagation()}>
+          <FontAwesomeIcon
+            icon={faWindowClose}
+            id="overlay-close"
+            onClick={() => setShowOverlay(false)}
+          />
+          {posts
+            .filter((post) => post.focused == true)
+            .map((post) => (
+              <div key={post.id}>
+                <h1 className="focused-post-title">{post.title}</h1>
+                <div className="post-image">
+                  <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
+                </div>
+                <div className="post-body">
+                  {documentToReactComponents(post.body)}
+                </div>
+              </div>
+            ))}
+        </article>
       </div>
-    </>
+    </main>
   );
 };
 
