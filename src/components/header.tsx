@@ -7,6 +7,7 @@ function Header() {
         <a href="/news">News and Events</a>
         <a href="/music">Our Music</a>
       </nav>
+      <h1 className='welcome'>Welcome to the Neil Coley Big Band</h1>
     </header>
   );
 }

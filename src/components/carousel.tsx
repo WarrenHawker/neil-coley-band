@@ -1,55 +1,43 @@
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import { Autoplay, Pagination, Navigation } from "swiper";
+
 import { ICarousel } from '@/misc/interfaces';
-import { useEffect, useState } from 'react';
-import { useInterval } from 'usehooks-ts';
 
 interface CarouselProps {
   carouselPhotos: ICarousel[];
 }
 
-const Carousel = ({ carouselPhotos }: CarouselProps) => {
-  const [position, setPosition] = useState<number>(1);
-
-  const prevPhoto = () => {
-    setPosition((prevPosition) => {
-      if (prevPosition == 1) {
-        return carouselPhotos.length;
-      } else {
-        return prevPosition - 1;
-      }
-    });
-  };
-
-  const nextPhoto = () => {
-    setPosition((prevPosition) => {
-      if (prevPosition == carouselPhotos.length) {
-        return 1;
-      } else {
-        return prevPosition + 1;
-      }
-    });
-  };
-
-  useInterval(nextPhoto, 3000);
-
+const Carousel: React.FC<CarouselProps> = ({ carouselPhotos }) => {
   return (
-    <div className="carousel-container">
-      <button onClick={prevPhoto}>Prev</button>
+    <Swiper
+      spaceBetween={30}
+      centeredSlides={true}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
+      pagination={{
+        clickable: true,
+      }}
+      loop={true}
+      speed={500}
+      navigation={true}
+      modules={[Autoplay, Pagination, Navigation]}
+      className="mySwiper"
+    >
       {carouselPhotos.map((photo) => (
-        <div
-          key={photo.id}
-          className={
-            photo.position == position
-              ? 'carousel-photo active'
-              : 'carousel-photo'
-          }
-        >
-          <img src={photo.photoURL} />
-          <p>{photo.name}</p>
-          <p>{photo.position}</p>
-        </div>
+        <SwiperSlide key={photo.id}>
+          <div className="carousel-photo">
+            <img src={photo.photoURL} alt={photo.name} />
+          </div>
+        </SwiperSlide>
       ))}
-      <button onClick={nextPhoto}>Next</button>
-    </div>
+    </Swiper>
   );
 };
 

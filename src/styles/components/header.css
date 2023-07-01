@@ -1,21 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
 header {
-    padding: 1em;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    
 }
 
 .top-nav {
     display: flex;
     width: 100%;
-    max-width: 1000px;
+    /* max-width: 1000px; */
     margin: auto;
+    padding: 1em;
     justify-content: space-around;
+    background-color: #292A36;
 }
 
 .top-nav a {
     text-decoration: none;
-    color: #000000;
+    color: #D0B983;
+    transition: .3s;
 }
 
 .top-nav a:hover, .top-nav a:focus {
-    text-decoration: underline;
-    color: gold;
+    text-decoration: none;
+    color: #F1F1F1;
+}
+.welcome {
+    color: #292A36;
+    font-family: 'Poiret One', cursive;
+    background-color: #f1f1f1c9;
+    margin: 0;
+    padding: .2em;
+    text-align: center;
+    font-size: clamp(1.5rem, 5.5vw, 4.5rem); 
+    width: 100%;
+    z-index: 2;
 }

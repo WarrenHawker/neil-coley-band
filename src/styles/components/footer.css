@@ -1,0 +1,19 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    border-top: 1px solid #f1f1f14b;
+}
+
+footer ul {
+    padding-left: 0;
+}
+footer h3 {
+    margin-bottom: .2rem;
+}
+footer ul, 
+footer p {
+    margin: .5rem 0;
+}
+
+

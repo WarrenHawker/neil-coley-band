@@ -4,6 +4,8 @@
 @import url('./components/bandMember.css');
 @import url('./pages/news.css');
 @import url('./components/newsPost.css');
+@import url('./components/footer.css');
+@import url('./pages/index.css');
 
 *,
 *::before,
@@ -14,7 +16,10 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 0 1em;
+  padding: 0 1em;  
+  background-color: #292A36;
+  color: #F1F1F1;
+
 }
 
 main,
@@ -26,6 +31,10 @@ section {
   margin: auto;
 }
 
+main {
+  display: grid;
+  justify-items: center;
+}
 img,
 iframe {
   display: block;
@@ -36,9 +45,8 @@ iframe {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
-
-a:hover,
-a:focus {
-  text-decoration: underline;
+li {
+  list-style: none;
 }
