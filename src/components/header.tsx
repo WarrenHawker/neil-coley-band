@@ -6,13 +6,8 @@ const Header = () => {
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
-    if (currentScrollPos === 0) {
-      setTopStyle(0);
-    } else if (prevScrollPos > currentScrollPos) {
-      setTopStyle(0);
-    } else {
-      setTopStyle(-100); 
-    }
+    const scrollDirection = prevScrollPos > currentScrollPos ? 0 : -100;
+    setTopStyle(currentScrollPos === 0 ? 0 : scrollDirection);
     setPrevScrollPos(currentScrollPos);
   };
 
@@ -39,6 +34,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
 {/* Original header code
