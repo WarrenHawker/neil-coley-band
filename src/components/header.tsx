@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 
 const Header = () => {
@@ -26,7 +28,13 @@ const Header = () => {
         <a href="/news">News and Events</a>
         <a href="/music">Our Music</a>
       </nav>
-      <h1 className="welcome" style={{ transform: `translateY(${topStyle}%)`, transition: 'transform 0.3s' }}>
+      <h1
+        className="welcome"
+        style={{
+          transform: `translateY(${topStyle}%)`,
+          transition: 'transform 0.3s',
+        }}
+      >
         Welcome to the Neil Coley Big Band
       </h1>
     </header>
@@ -35,9 +43,8 @@ const Header = () => {
 
 export default Header;
 
-
-
-{/* Original header code
+{
+  /* Original header code
 
 function Header() {
   return (
@@ -53,4 +60,5 @@ function Header() {
   );
 }
 
-export default Header;*/}
+export default Header;*/
+}
