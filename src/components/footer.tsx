@@ -1,4 +1,6 @@
-import React, { useState, useEffect} from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 
 function Footer() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -8,7 +10,6 @@ function Footer() {
       setCurrentYear(new Date().getFullYear());
     };
   }, []);
-
 
   return (
     <footer>
@@ -22,12 +23,16 @@ function Footer() {
         </ul>
       </span>
       <span className="privacy-policy">
-      <h3>Privacy Policy</h3>
-        <p><a href="mailto:neilcoleybigband@gmail.com">neilcoleybigband@gmail.com </a><br />
-         &copy; {currentYear} <br />
-         Neil Coley Big Band <br />
-        All rights reserved</p>
-      
+        <h3>Privacy Policy</h3>
+        <p>
+          <a href="mailto:neilcoleybigband@gmail.com">
+            neilcoleybigband@gmail.com{' '}
+          </a>
+          <br />
+          &copy; {currentYear} <br />
+          Neil Coley Big Band <br />
+          All rights reserved
+        </p>
       </span>
     </footer>
   );
