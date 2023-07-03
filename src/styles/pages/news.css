@@ -9,11 +9,11 @@
   overflow-x: hidden;
   z-index: 999;
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
-  right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  right: 0;
+  backdrop-filter: blur(10px);
   visibility: hidden;
   opacity: 0;
   transform: scale(1.09);

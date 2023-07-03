@@ -1,5 +1,5 @@
-import { trimString } from '@/misc/functions';
-import { INewsPost } from '@/misc/interfaces';
+import { trimString } from '@/lib/functions';
+import { INewsPost } from '@/lib/interfaces';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 
 interface NewsPostProps {

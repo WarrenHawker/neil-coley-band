@@ -6,10 +6,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // import { EffectFade, Autoplay, Pagination, Navigation } from "swiper";
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination, Navigation } from 'swiper';
 
-
-import { ICarousel } from '@/misc/interfaces';
+import { ICarousel } from '@/lib/interfaces';
 
 interface CarouselProps {
   carouselPhotos: ICarousel[];
@@ -38,7 +37,7 @@ const Carousel: React.FC<CarouselProps> = ({ carouselPhotos }) => {
       {carouselPhotos.map((photo) => (
         <SwiperSlide key={photo.id}>
           <div className="carousel-photo">
-            <img src={photo.photoURL} alt={photo.name} loading='lazy'/>
+            <img src={photo.photoURL} alt={photo.name} loading="lazy" />
           </div>
         </SwiperSlide>
       ))}

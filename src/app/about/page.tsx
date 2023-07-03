@@ -1,42 +1,15 @@
-import { createClient } from 'contentful';
+'use client';
+
 import { useState, useEffect } from 'react';
 import {
   IBandMember,
   IBandSection,
   IContentfulBandMember,
-} from '../misc/interfaces';
+} from '../../lib/interfaces';
 import BandMember from '@/components/bandMember';
+import { contentfulClient } from '@/lib/functions';
 
-export const getStaticProps = async () => {
-  //checks to see if environment variables are loaded
-  if (!process.env.SPACE_ID) {
-    throw new Error('contentful SPACE_ID is missing');
-  }
-  if (!process.env.ACCESS_TOKEN) {
-    throw new Error('contentful ACCESS_TOKEN is missing');
-  }
-
-  //create new instance of contentful client using api key data (see .env.local file)
-  const client = createClient({
-    space: process.env.SPACE_ID,
-    accessToken: process.env.ACCESS_TOKEN,
-  });
-
-  //get band members from contentful
-  const response = await client.getEntries({ content_type: 'bandMember' });
-
-  return {
-    props: {
-      bandMembers: response.items,
-    },
-  };
-};
-
-interface AboutPageProps {
-  bandMembers: IContentfulBandMember[];
-}
-
-const About = ({ bandMembers }: AboutPageProps) => {
+const About = () => {
   const [members, setMembers] = useState<IBandMember[]>([]);
   const sections: IBandSection[] = [
     'Trumpets',
@@ -46,8 +19,16 @@ const About = ({ bandMembers }: AboutPageProps) => {
   ];
 
   useEffect(() => {
+    getEntries();
+  }, []);
+
+  const getEntries = async () => {
+    const response = await contentfulClient.getEntries({
+      content_type: 'bandMember',
+    });
+    const data: Array<IContentfulBandMember> = response.items as [];
     setMembers(
-      bandMembers.map((item) => {
+      data.map((item: IContentfulBandMember) => {
         return {
           id: item.sys.id,
           name: item.fields.name,
@@ -58,7 +39,7 @@ const About = ({ bandMembers }: AboutPageProps) => {
         };
       })
     );
-  }, [bandMembers]);
+  };
 
   return (
     <>
