@@ -7,10 +7,12 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { contentfulClient } from '@/lib/functions';
+import Overlay from '@/components/Overlay';
 
 const News = () => {
   const [posts, setPosts] = useState<INewsPost[]>([]);
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
+  const [focusedPost, setFocusedPost] = useState<INewsPost | null>(null);
 
   useEffect(() => {
     getEntries();
@@ -48,6 +50,7 @@ const News = () => {
         }
       });
     });
+    setFocusedPost(posts.filter((post) => post.id == id)[0]);
     setShowOverlay(true);
   };
 
@@ -60,34 +63,31 @@ const News = () => {
             <NewsPost key={post.id} post={post} focusPost={focusPost} />
           ))}
         </section>
-      </main>
-      <div
-        className={showOverlay ? 'overlay visible' : 'overlay'}
-        onClick={() => setShowOverlay(false)}
-      >
-        <article className="focused-post" onClick={(e) => e.stopPropagation()}>
-          {posts
-            .filter((post) => post.focused == true)
-            .map((post) => (
-              <div key={post.id}>
-                <h1 className="focused-post-title">
-                  <FontAwesomeIcon
-                    icon={faWindowClose}
-                    id="overlay-close"
-                    onClick={() => setShowOverlay(false)}
-                  />{' '}
-                  {post.title}
-                </h1>
-                <div className="post-image">
-                  <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
-                </div>
-                <div className="post-body">
-                  {documentToReactComponents(post.body)}
-                </div>
+        <Overlay
+          isOpen={showOverlay}
+          setIsOpen={setShowOverlay}
+          header={
+            focusedPost ? (
+              <h1 className="focused-post-title">{focusedPost.title}</h1>
+            ) : null
+          }
+        >
+          {focusedPost ? (
+            <article className="focused-post">
+              <div className="post-image">
+                <img
+                  src={
+                    focusedPost.thumbnail ? focusedPost.thumbnail : 'logo.png'
+                  }
+                />
               </div>
-            ))}
-        </article>
-      </div>
+              <div className="post-body">
+                {documentToReactComponents(focusedPost.body)}
+              </div>
+            </article>
+          ) : null}
+        </Overlay>
+      </main>
     </>
   );
 };
