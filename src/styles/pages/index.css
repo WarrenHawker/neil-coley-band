@@ -7,6 +7,8 @@
     flex-direction: column;
     gap: 1.5em;
     padding: 1em;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .authentic p, 
@@ -46,4 +48,16 @@
         grid-area: 1/1/2/2;
     }
   
+}
+.welcome-mobile {
+    color: #292a36;
+    font-family: 'Poiret One', cursive;
+    background-color: #f1f1f1c9;
+    padding: .5em;
+    margin-top: 0;
+}
+@media (min-width: 768px) {
+    .welcome-mobile {
+        display: none;
+    }
 }

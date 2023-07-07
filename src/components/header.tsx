@@ -22,6 +22,7 @@ const Header = () => {
 
   return (
     <header>
+      {/* desktop */}
       <nav className="top-nav">
         <a href="/">Home</a>
         <a href="/about">About Us</a>
@@ -37,7 +38,24 @@ const Header = () => {
       >
         Welcome to the Neil Coley Big Band
       </h1>
-    </header>
+
+      {/* mobile */}
+      <nav role="navigation" className="mobile-nav">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+          <ul id="menu">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/news">News and Events</a>
+            <a href="/music">Our Music</a>
+          </ul>
+        </div>
+      </nav>
+         </header>
+    
   );
 };
 

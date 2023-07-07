@@ -16,10 +16,10 @@ function Footer() {
       <span className="footer-links">
         <h3>Explore</h3>
         <ul>
-          <li>About Us</li>
-          <li>News and Events</li>
-          <li>Our Music</li>
-          <li>Contact Us</li>
+        <li><a href="/">Home</a></li>
+        <li> <a href="/about">About Us</a></li>
+        <li><a href="/news">News and Events</a></li>
+        <li> <a href="/music">Our Music</a></li>
         </ul>
       </span>
       <span className="privacy-policy">

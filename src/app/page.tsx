@@ -33,6 +33,7 @@ export default function Home() {
     <main>
       <Carousel carouselPhotos={carouselPhotos} />
       <section className="home-content">
+        <div className='welcome-mobile'><h1>Welcome to the Neil Coley Band</h1></div>
         <div className="authentic">
           <span className="authentic--text">
             <h2>“One of the finest authentic Swing Bands in the Midlands”</h2>
