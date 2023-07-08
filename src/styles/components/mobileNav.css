@@ -1,105 +1,102 @@
- 
- .mobile-nav {
+.mobile-nav {
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   right: 0;
-  background-color: #292A36;
+  background-color: var(--color-background);
   margin: auto;
-  padding: .8em 1em;
- }
- #menuToggle {
-   display: block;
-   z-index: 1;  
-   -webkit-user-select: none;
-   user-select: none;
- }
- 
- #menuToggle a {
-   text-decoration: none;
-   color: #e9ce8f;
-   transition: color 0.3s ease;
- }
- 
- #menuToggle a:hover,
- #menuToggle a:focus {
-   color: white;
- }
- 
- 
- #menuToggle input{
-   display: block;
-   width: 2.5em;
-   height: 2em;
-   position: absolute;
-   top: -.43em;
-   left: -.31em;
-   cursor: pointer;
-   opacity: 0; 
-   z-index: 2;
-   -webkit-touch-callout: none;
- }
+  padding: 0.8em 1em;
+}
+#menuToggle {
+  display: block;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
 
- #menuToggle span {
-   display: block;
-   width: 2em;
-   height: .25em;
-   margin-bottom: .31em;
-   position: relative;
-   background: #d0b983;
-   border-radius: .18em;
-   z-index: 1;
-   transform-origin: .25em 0px;
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-               opacity 0.55s ease;
- }
- 
- #menuToggle span:first-child {
-   transform-origin: 0% 0%;
- }
- 
- #menuToggle span:nth-last-child(2) {
-   transform-origin: 0% 100%;
- }
- 
- #menuToggle input:checked ~ span {
-   opacity: 1;
-   transform: rotate(45deg) translate(-2px, -1px);
-   background: #d0b983;
- }
- 
- #menuToggle input:checked ~ span:nth-last-child(3) {
-   opacity: 0;
-   transform: rotate(0deg) scale(0.2, 0.2);
- }
+#menuToggle a {
+  text-decoration: none;
+  color: var(--color-accent);
+  transition: color 0.3s ease;
+}
 
- #menuToggle input:checked ~ span:nth-last-child(2) {
-   transform: rotate(-45deg) translate(0, -1px);
- }
+#menuToggle a:hover,
+#menuToggle a:focus {
+  color: var(--color-white);
+}
 
- #menu {
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0.25em;
+  left: 0.5em;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  -webkit-touch-callout: none;
+}
+
+#menuToggle span {
+  display: block;
+  width: 2em;
+  height: 0.25em;
+  margin-bottom: 0.31em;
+  position: relative;
+  background: var(--color-accent);
+  border-radius: 0.18em;
+  z-index: 1;
+  transform-origin: 0.25em 0px;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: var(--color-accent);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
   display: flex;
   flex-direction: column;
-   position: absolute;
-   gap: .7rem;
-   font-size: 1.5rem;
-   width: 80%;
-   margin: -4em 0 0 -2em;
-   padding: 5.1em 2.2em 2em;
-   background: #494b63;
-   -webkit-font-smoothing: antialiased;
-   transform-origin: 0% 0%;
-   transform: translate(-100%, 0);
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
- }
+  position: absolute;
+  gap: 0.7rem;
+  font-size: 1.5rem;
+  width: 80%;
+  margin: -4em 0 0 -2em;
+  padding: 5.1em 2.2em 2em;
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
 
- #menuToggle input:checked ~ ul {
-   transform: none;
- }
+#menuToggle input:checked ~ ul {
+  transform: none;
+}
 
- @media (max-width: 767px) {
+@media (max-width: 767px) {
   .top-nav,
   .welcome {
     display: none;
@@ -107,4 +104,4 @@
   header {
     background-color: none;
   }
- }
+}

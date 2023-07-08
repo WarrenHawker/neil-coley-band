@@ -22,3 +22,18 @@
 .band-member-info p {
   margin: 0;
 }
+
+@media screen and (max-width: 450px) {
+  .band-member {
+    height: auto;
+    margin-bottom: 1em;
+  }
+
+  .band-member-pic {
+    height: auto;
+  }
+
+  .band-member-info h2 {
+    margin-top: 0.5em;
+  }
+}

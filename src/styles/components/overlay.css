@@ -1,4 +1,4 @@
-.overlay:before {
+.overlay::before {
   content: '';
   background: rgba(0, 0, 0, 0.6);
   position: fixed;
@@ -12,7 +12,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.open:before {
+.open::before {
   visibility: visible;
   opacity: 1;
   transition: all 0.3s ease-in-out;
@@ -39,9 +39,8 @@
 }
 
 .overlay-content {
-  /* background: #fefefe; */
-  background-color: #292a36;
-  border: #333333 solid 0px;
+  background-color: var(--color-background);
+  border: var(--color-grey) solid 0px;
   border-radius: 10px;
   padding: 1em;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
@@ -56,7 +55,7 @@
   width: 100%;
   max-width: 1000px;
   margin: auto;
-  border-top: 1px solid grey;
+  border-top: 1px solid var(--color-grey);
   justify-content: center;
   align-items: center;
   display: flex;

@@ -1,63 +1,77 @@
 .home-content {
-    margin: 3em 0;
+  margin: 3em 0;
 }
-.authentic, 
+.authentic,
 .home-calendar {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    padding: 1em;
-    width: 90%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 1em;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.authentic p, 
+.authentic p,
 .home-calendar p {
-    text-align: justify;
-
+  text-align: justify;
 }
 .placeholder {
-    border: aliceblue solid 1px;
-    text-align: center;
-    padding: 7rem 5rem;
-
+  border: aliceblue solid 1px;
+  text-align: center;
+  padding: 7rem 5rem;
 }
 .home-button {
-    border-radius: 10px;
-    padding: 1rem;
-    background: linear-gradient(180deg, #B59C63 0%, #F0E9D7 51.92%, #E8E2D6 62.45%, #B1985E 100%);
-    color: #292A36;
+  border-radius: 10px;
+  padding: 1rem;
+  background: linear-gradient(
+    180deg,
+    #b59c63 0%,
+    #f0e9d7 51.92%,
+    #e8e2d6 62.45%,
+    #b1985e 100%
+  );
+  color: #292a36;
 }
-.home-button:hover, 
+.home-button:hover,
 .home-button:focus {
-    background: linear-gradient(180deg, #d7ba77 0%, #fffefb 51.92%, #f5f3ef 62.45%, #f6da99 100%);
-    color: #161d54;
+  background: linear-gradient(
+    180deg,
+    #d7ba77 0%,
+    #fffefb 51.92%,
+    #f5f3ef 62.45%,
+    #f6da99 100%
+  );
+  color: #161d54;
 }
 @media (min-width: 768px) {
-    .authentic, 
-    .home-calendar {
-        display: grid;
-        grid-template-columns: repeat(2, 50%);
-        padding: 2em;
-        gap: 2em;
-    }
-    .authentic--text {
-        grid-area: 1/2/1/2;
-    }
-    .authentic .placeholder {
-        grid-area: 1/1/2/2;
-    }
-  
+  .authentic,
+  .home-calendar {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    padding: 2em;
+    gap: 2em;
+  }
+  .authentic--text {
+    grid-area: 1/2/1/2;
+  }
+  .authentic .placeholder {
+    grid-area: 1/1/2/2;
+  }
 }
 .welcome-mobile {
-    color: #292a36;
-    font-family: 'Poiret One', cursive;
-    background-color: #f1f1f1c9;
-    padding: .5em;
-    margin-top: 0;
+  color: var(--color-background);
+  font-family: 'Poiret One', cursive;
+  background-color: var(--color-banner);
+  padding: 0.5em;
+  margin-top: 0;
 }
+
+.welcome-mobile h1 {
+  text-align: center;
+}
+
 @media (min-width: 768px) {
-    .welcome-mobile {
-        display: none;
-    }
+  .welcome-mobile {
+    display: none;
+  }
 }

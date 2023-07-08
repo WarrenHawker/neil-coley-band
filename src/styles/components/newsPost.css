@@ -1,7 +1,8 @@
 .post {
   max-width: 400px;
   height: 400px;
-  padding: 0 1em;
+  width: 100%;
+  padding: 1em;
   cursor: pointer;
   transition: box-shadow 0.5s ease-in-out;
   border-radius: 10px;
@@ -30,7 +31,7 @@
 }
 
 .learn-more {
-  color: blue;
+  color: var(--color-accent);
 }
 
 .learn-more:hover,

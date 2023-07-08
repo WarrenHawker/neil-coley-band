@@ -1,12 +1,14 @@
-@import url('./components/header.css');
-@import url('./pages/about.css');
-@import url('./components/carousel.css');
-@import url('./components/bandMember.css');
-@import url('./pages/news.css');
-@import url('./components/newsPost.css');
-@import url('./components/footer.css');
-@import url('./pages/index.css');
-@import url('./components/mobileNav.css');
+@import url(./components/header.css);
+@import url(./pages/about.css);
+@import url(./components/carousel.css);
+@import url(./components/bandMember.css);
+@import url(./pages/news.css);
+@import url(./components/newsPost.css);
+@import url(./components/footer.css);
+@import url(./pages/index.css);
+@import url(./components/mobileNav.css);
+@import url(./components/overlay.css);
+@import url(./abstracts/colors.css);
 
 *,
 *::before,
@@ -20,8 +22,8 @@ body {
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
   padding: 0 1em;
-  background-color: #292a36;
-  color: #f1f1f1;
+  background-color: var(--color-background);
+  color: var(--color-white);
   min-height: 100vh;
 }
 
@@ -35,8 +37,7 @@ section {
 }
 
 main {
-  display: grid;
-  justify-items: center;
+  padding: 0 1em;
 }
 
 img,
@@ -49,7 +50,7 @@ iframe {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: var(--color-accent);
 }
 li {
   list-style: none;
@@ -61,7 +62,7 @@ footer {
   flex-shrink: 0;
   flex-basis: auto;
   width: 100%;
-  color: white;
+  color: var(--color-white);
 }
 
 .content-wrapper {
@@ -73,7 +74,7 @@ footer {
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 
 .page-title {
