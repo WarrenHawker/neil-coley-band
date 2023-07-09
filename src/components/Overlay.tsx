@@ -8,12 +8,7 @@ interface OverlayProps {
   setIsOpen: (value: boolean) => void;
 }
 
-export default function Overlay({
-  children,
-  header,
-  isOpen,
-  setIsOpen,
-}: OverlayProps) {
+const Overlay = ({ children, header, isOpen, setIsOpen }: OverlayProps) => {
   return (
     <div
       className={isOpen ? 'overlay open' : 'overlay'}
@@ -34,4 +29,6 @@ export default function Overlay({
       </div>
     </div>
   );
-}
+};
+
+export default Overlay;

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -8,13 +10,33 @@ import 'swiper/css/navigation';
 import { EffectFade, Autoplay, Pagination, Navigation } from 'swiper';
 // import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper';
 
-import { ICarousel } from '@/lib/interfaces';
+import { IContentfulCarousel } from '@/lib/interfaces';
+import { contentfulClient } from '@/lib/functions';
 
-interface CarouselProps {
-  carouselPhotos: ICarousel[];
-}
+const Carousel = () => {
+  const [carouselPhotos, setCarouselPhotos] = useState<any[]>([]);
 
-const Carousel: React.FC<CarouselProps> = ({ carouselPhotos }) => {
+  useEffect(() => {
+    getPhotos();
+  }, []);
+
+  const getPhotos = async () => {
+    const response = await contentfulClient.getEntries({
+      content_type: 'carousel',
+    });
+    const data: Array<IContentfulCarousel> = response.items as [];
+    setCarouselPhotos(
+      data.map((item: IContentfulCarousel, index: number) => {
+        return {
+          id: item.sys.id,
+          name: item.fields.name,
+          photoURL: item.fields.photo.fields.file.url,
+          position: index + 1,
+        };
+      })
+    );
+  };
+
   return (
     <Swiper
       spaceBetween={30}

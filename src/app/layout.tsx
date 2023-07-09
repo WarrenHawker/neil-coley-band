@@ -1,15 +1,12 @@
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import '../styles/globals.css';
+import { ComponentWrapper } from '@/lib/interfaces';
 export const metadata = {
   title: 'Neil Coley Band',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = ({ children }: ComponentWrapper) => {
   return (
     <html lang="en">
       <head>
@@ -26,4 +23,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

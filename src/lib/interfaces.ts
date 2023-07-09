@@ -89,6 +89,44 @@ export interface INewsPost {
   focused: boolean;
 }
 
-export interface RichText {
+export interface IContentfulHomeText {
+  fields: {
+    section1: Document;
+    homepageImage: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+    section2: Document;
+  };
+}
+
+export interface IContentfulPageText {
+  fields: {
+    text: Document;
+  };
+}
+
+export interface IContentfulMusic {
+  sys: {
+    id: string;
+  };
+  fields: {
+    title: string;
+    videoUrl: string;
+    description: string | undefined;
+  };
+}
+
+export interface MusicVideo {
+  id: string;
+  title: string;
+  videoURL: string;
+  description: string | undefined;
+}
+
+export interface ComponentWrapper {
   children: ReactNode;
 }

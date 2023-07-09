@@ -1,0 +1,28 @@
+.music-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+  gap: 2em;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+}
+
+.music-video-container {
+  margin-bottom: 2em;
+}
+
+.music-video-container h3 {
+  text-align: center;
+  height: 2em;
+}
+
+@media (max-width: 700px) {
+  .music-video-container {
+    margin-bottom: 0;
+  }
+
+  .music-video-container h3 {
+    height: auto;
+  }
+}

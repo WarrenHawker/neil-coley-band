@@ -9,6 +9,7 @@
 @import url(./components/mobileNav.css);
 @import url(./components/overlay.css);
 @import url(./abstracts/colors.css);
+@import url(./pages/music.css);
 
 *,
 *::before,
@@ -79,4 +80,17 @@ footer {
 
 .page-title {
   grid-column: 1 / -1;
+  width: 100%;
+  text-align: center;
+  color: var(--color-accent);
+  font-size: 40px;
+}
+
+.page-text p {
+  max-width: 800px;
+  margin: 2em auto;
+}
+
+.page-text h2 {
+  text-align: center;
 }
