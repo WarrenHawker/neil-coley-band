@@ -3,8 +3,6 @@
 import NewsPost from '@/components/newsPost';
 import { IContentfulNewsPost, INewsPost } from '@/lib/interfaces';
 import { useEffect, useState } from 'react';
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { contentfulClient } from '@/lib/functions';
 import Overlay from '@/components/Overlay';

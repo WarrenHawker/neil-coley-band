@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-function Footer() {
+const Footer = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
@@ -16,10 +16,20 @@ function Footer() {
       <span className="footer-links">
         <h3>Explore</h3>
         <ul>
-        <li><a href="/">Home</a></li>
-        <li> <a href="/about">About Us</a></li>
-        <li><a href="/news">News and Events</a></li>
-        <li> <a href="/music">Our Music</a></li>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            {' '}
+            <a href="/about">About Us</a>
+          </li>
+          <li>
+            <a href="/news">News and Events</a>
+          </li>
+          <li>
+            {' '}
+            <a href="/music">Our Music</a>
+          </li>
         </ul>
       </span>
       <span className="privacy-policy">
@@ -36,6 +46,6 @@ function Footer() {
       </span>
     </footer>
   );
-}
+};
 
 export default Footer;
