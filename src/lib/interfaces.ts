@@ -1,5 +1,6 @@
 import { Document } from '@contentful/rich-text-types';
 import { ReactNode } from 'react';
+import { SemanticDiagnosticsBuilderProgram } from 'typescript';
 
 export type IBandSection =
   | 'Trumpets'
@@ -125,6 +126,34 @@ export interface MusicVideo {
   title: string;
   videoURL: string;
   description: string | undefined;
+}
+
+export interface IContentfulGig {
+  sys: {
+    id: string;
+  };
+  fields: {
+    title: string;
+    description: Document | undefined;
+    location: string;
+    dateTime: string;
+    image: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+  };
+}
+
+export interface IGig {
+  id: string;
+  title: string;
+  description: Document | undefined;
+  location: string;
+  dateTime: string;
+  imageURL: string;
 }
 
 export interface ComponentWrapper {
