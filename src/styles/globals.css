@@ -37,6 +37,10 @@ section {
   margin: auto;
 }
 
+aside {
+  width: 30%;
+}
+
 main {
   padding: 0 1em;
 }
