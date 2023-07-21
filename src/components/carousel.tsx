@@ -1,16 +1,11 @@
 'use client';
 
+
 import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 import Image from 'next/image';
-
-
-import { EffectFade, Autoplay, Pagination, Navigation } from 'swiper';
 
 import { IContentfulCarousel } from '@/lib/interfaces';
 import { contentfulClient } from '@/lib/functions';
@@ -39,33 +34,45 @@ const Carousel = () => {
       })
     );
   };
-
+  const items = carouselPhotos.map((photo) => (
+    <div className="item" key={photo.id}>
+      <div className="carousel-photo">
+        <Image src={photo.photoURL} alt={photo.name} width={1500} height={600}/>
+      </div>
+    </div>
+  ));
+  
+  const renderPlayPauseButton = ({ isPlaying, play, pause }: any) => {
+    return (
+      <button className="play-pause-btn" onClick={isPlaying ? pause : play}>
+       {isPlaying ? '\u23F8' : '\u25BA'}
+      </button>
+    );
+  };
+  
   return (
-    <Swiper
-      spaceBetween={30}
-      effect={'fade'}
-      centeredSlides={true}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
+    <AliceCarousel
+      autoPlay
+      autoPlayControls
+      autoPlayStrategy="none"
+      autoPlayInterval={3000}
+      animationDuration={500}
+      // default animationType is "slide" 
+      animationType="fadeout"
+      infinite
+      touchTracking={true}
+      // default button looked bad-can change styling in CSS now
+      renderPlayPauseButton={renderPlayPauseButton}
+      // default arrows were very small and difficult to see
+      renderPrevButton={() => {
+        return <span className="prevBtn prev-nextBtn">&lang;</span>
       }}
-      pagination={{
-        clickable: true,
+      renderNextButton={() => {
+        return <span className="nextBtn prev-nextBtn">&rang;</span>
       }}
-      loop={true}
-      speed={500}
-      navigation={true}
-      modules={[EffectFade, Autoplay, Pagination, Navigation]}
-      className="mySwiper"
-    >
-      {carouselPhotos.map((photo) => (
-        <SwiperSlide key={photo.id}>
-          <div className="carousel-photo">
-            <Image src={photo.photoURL} width={500} height={500} alt={photo.name} />
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+      items={items}
+      
+    />
   );
 };
 
