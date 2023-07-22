@@ -137,6 +137,7 @@ export interface IContentfulGig {
     description: Document | undefined;
     location: string;
     dateTime: string;
+    ticketUrl: string;
     image: {
       fields: {
         file: {
@@ -154,6 +155,7 @@ export interface IGig {
   location: string;
   dateTime: string;
   imageURL: string;
+  ticketURL: string;
 }
 
 export interface ComponentWrapper {

@@ -15,11 +15,28 @@
 .home-calendar p {
   text-align: justify;
 }
-.placeholder {
+.next-gig {
   border: aliceblue solid 1px;
   text-align: center;
-  padding: 7rem 5rem;
+  padding: 0 1em;
 }
+
+.next-gig h3,
+.next-gig h4 {
+  margin: 0;
+  color: var(--color-accent);
+}
+
+.next-gig p {
+  text-align: center;
+}
+
+.next-gig .home-button {
+  display: block;
+  margin: 1em auto;
+  width: fit-content;
+}
+
 .home-button {
   border-radius: 10px;
   padding: 1rem;

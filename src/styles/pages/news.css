@@ -148,6 +148,16 @@
   display: none;
 }
 
+.focused-gig-title {
+  text-align: center;
+}
+
+.focused-post .home-button {
+  display: block;
+  width: fit-content;
+  margin: 1em auto;
+}
+
 @media screen and (max-width: 1200px) {
   .headline-post {
     display: block;

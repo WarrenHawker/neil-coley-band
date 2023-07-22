@@ -189,6 +189,35 @@ export const getGigDate = (input: string | Date) => {
   };
 };
 
+export const getFullDate = (date: Date | string | undefined): string => {
+  if (!date) {
+    return '';
+  }
+  if (typeof date == 'string') {
+    date = new Date(date);
+  }
+
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
+
+  const nthNumber = (number: number) => {
+    if (number > 3 && number < 21) return 'th';
+    switch (number % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  };
+
+  return `${month} ${day}${nthNumber(day)} ${year}`;
+};
+
 const getContentfulClient = () => {
   //checks to see if environment variables are loaded
   if (!process.env.SPACE_ID) {

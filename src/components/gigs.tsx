@@ -4,6 +4,8 @@ import { IGig } from '@/lib/interfaces';
 import SingleGig from './singleGig';
 import { useState } from 'react';
 import Overlay from './Overlay';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { getFullDate, getGigDate } from '@/lib/functions';
 
 interface GigsProps {
   gigPosts: IGig[];
@@ -73,7 +75,28 @@ const Gigs = ({ gigPosts }: GigsProps) => {
                   src={focusedGig.imageURL ? focusedGig.imageURL : 'logo.png'}
                 />
               </div>
-              <div className="post-body"></div>
+              <div className="post-body">
+                <h3 className="focused-gig-title">
+                  {getFullDate(focusedGig.dateTime)}{' '}
+                  {getGigDate(focusedGig.dateTime).time}
+                </h3>
+                <h4 className="focused-gig-title">{focusedGig.location}</h4>
+
+                {focusedGig.description
+                  ? documentToReactComponents(focusedGig.description)
+                  : null}
+              </div>
+              {focusedGig.ticketURL ? (
+                <a
+                  className="home-button"
+                  href={focusedGig.ticketURL}
+                  target="_blank"
+                >
+                  Book Tickets
+                </a>
+              ) : (
+                <h4 className="focused-gig-title">This event is free!</h4>
+              )}
             </article>
           ) : null}
         </Overlay>

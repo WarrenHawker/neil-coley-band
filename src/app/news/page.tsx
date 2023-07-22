@@ -45,6 +45,7 @@ const fetchGigs = async () => {
       location: item.fields.location,
       dateTime: item.fields.dateTime,
       imageURL: item.fields.image.fields.file.url,
+      ticketURL: item.fields.ticketUrl,
       focused: false,
     };
   });
