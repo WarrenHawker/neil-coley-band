@@ -6,6 +6,10 @@
   filter: sepia(0.3);
 }
 
+.alice-carousel {
+  width: 90% !important;
+}
+
 @media (min-width: 768px) {
   .alice-carousel__wrapper img {
     height: 500px;
