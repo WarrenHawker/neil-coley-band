@@ -11,7 +11,7 @@ interface SingleGigProps {
 const SingleGig = ({ gig, focusGig }: SingleGigProps) => {
   const gigDate = getGigDate(gig.dateTime);
   return (
-    <article className="gig">
+    <article className="gig" onClick={() => focusGig(gig.id)}>
       <div className="gig-date">
         <p>{gigDate.weekday}</p>
         <p>{gigDate.day}</p>
@@ -19,8 +19,8 @@ const SingleGig = ({ gig, focusGig }: SingleGigProps) => {
         <p>{gigDate.time}</p>
       </div>
       <div className="gig-title">
-        <p>{gig.title}</p>
-        <button onClick={() => focusGig(gig.id)}>Learn More</button>
+        <h3>{gig.title}</h3>
+        <button>Learn More</button>
       </div>
     </article>
   );

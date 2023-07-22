@@ -13,6 +13,7 @@ const Gigs = ({ gigPosts }: GigsProps) => {
   const [gigs, setPosts] = useState(gigPosts);
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
   const [focusedGig, setFocusedGig] = useState<IGig | null>(null);
+  const [showGigs, setShowGigs] = useState<boolean>(false);
 
   const focusGig = (id: string) => {
     setPosts((prevPosts) => {
@@ -30,33 +31,53 @@ const Gigs = ({ gigPosts }: GigsProps) => {
 
   return (
     <>
-      <section className="gigs">
-        <h2>Upcoming Gigs</h2>
-        {gigs.map((gig) => (
-          <SingleGig key={gig.id} gig={gig} focusGig={focusGig} />
-        ))}
-      </section>
-
-      <Overlay
-        isOpen={showOverlay}
-        setIsOpen={setShowOverlay}
-        header={
-          focusedGig ? (
-            <h1 className="focused-post-title">{focusedGig.title}</h1>
-          ) : null
-        }
+      <button
+        className={showGigs ? 'gigs-button show' : 'gigs-button'}
+        onClick={() => setShowGigs(true)}
       >
-        {focusedGig ? (
-          <article className="focused-post">
-            <div className="post-image">
-              <img
-                src={focusedGig.imageURL ? focusedGig.imageURL : 'logo.png'}
-              />
-            </div>
-            <div className="post-body"></div>
-          </article>
-        ) : null}
-      </Overlay>
+        Upcoming Gigs
+      </button>
+      <aside
+        className={showGigs ? 'gigs-container show' : 'gigs-container'}
+        onClick={() => setShowGigs(false)}
+      >
+        <section className={showGigs ? 'gigs show' : 'gigs'}>
+          <h2 className={showGigs ? 'gigs-title show' : 'gigs-title'}>
+            Upcoming Gigs{' '}
+            <button
+              className="btn-hide-gigs"
+              onClick={() => setShowGigs(false)}
+            >
+              <i className="fa-solid fa-arrow-right"></i>
+            </button>
+          </h2>
+
+          {gigs.map((gig) => (
+            <SingleGig key={gig.id} gig={gig} focusGig={focusGig} />
+          ))}
+        </section>
+
+        <Overlay
+          isOpen={showOverlay}
+          setIsOpen={setShowOverlay}
+          header={
+            focusedGig ? (
+              <h1 className="focused-post-title">{focusedGig.title}</h1>
+            ) : null
+          }
+        >
+          {focusedGig ? (
+            <article className="focused-post">
+              <div className="post-image">
+                <img
+                  src={focusedGig.imageURL ? focusedGig.imageURL : 'logo.png'}
+                />
+              </div>
+              <div className="post-body"></div>
+            </article>
+          ) : null}
+        </Overlay>
+      </aside>
     </>
   );
 };

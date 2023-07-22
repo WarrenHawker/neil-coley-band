@@ -56,17 +56,14 @@ const News = async () => {
   const gigsData = fetchGigs();
 
   const [posts, gigs] = await Promise.all([postsData, gigsData]);
-  console.log(gigs);
 
   return (
     <>
       <h1 className="page-title">News and Events</h1>
-      <aside>
+      <div className="gigs-and-news">
         <Gigs gigPosts={gigs} />
-      </aside>
-      <main className="news-posts">
         <NewsPosts newsPosts={posts} />
-      </main>
+      </div>
     </>
   );
 };

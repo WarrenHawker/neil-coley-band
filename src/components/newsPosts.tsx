@@ -30,20 +30,25 @@ const NewsPosts = ({ newsPosts }: NewsPostProps) => {
   };
 
   return (
-    <>
+    <main className="news-posts">
       <section className="posts">
         <h2>News</h2>
         <div className="posts-container">
           {posts.map((post, index) => {
             if (index == 0) {
               return (
-                <div className="headline-post" key={post.id}>
-                  <div className="headline-post-text">
-                    <h3>{post.title}</h3>
-                    <p>{documentToReactComponents(post.body)}</p>
+                <>
+                  <div className="headline-post" key={post.id}>
+                    <div className="headline-post-text">
+                      <h3>{post.title}</h3>
+                      <div>{documentToReactComponents(post.body)}</div>
+                    </div>
+                    <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
                   </div>
-                  <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
-                </div>
+                  <div className="headline-post-mobile">
+                    <NewsPost key={post.id} post={post} focusPost={focusPost} />
+                  </div>
+                </>
               );
             } else {
               return (
@@ -75,7 +80,7 @@ const NewsPosts = ({ newsPosts }: NewsPostProps) => {
           </article>
         ) : null}
       </Overlay>
-    </>
+    </main>
   );
 };
 

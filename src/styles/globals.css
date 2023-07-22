@@ -22,7 +22,6 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 0 1em;
   background-color: var(--color-background);
   color: var(--color-white);
   min-height: 100vh;
@@ -35,10 +34,6 @@ section {
   width: 100%;
   max-width: 1500px;
   margin: auto;
-}
-
-aside {
-  width: 30%;
 }
 
 main {
@@ -81,8 +76,11 @@ footer {
   position: relative;
   width: 100%;
   margin-top: 2em;
+  margin-bottom: 2em;
+  overflow-x: hidden;
+  padding: 0 1em;
 }
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .content-wrapper {
     margin-top: 0;
   }
