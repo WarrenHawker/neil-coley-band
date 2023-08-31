@@ -105,7 +105,6 @@ const Home = async () => {
           </span>
         </div>
       </section>
-      <h3>Today's Date: {new Date().toISOString()}</h3>
     </main>
   );
 };
