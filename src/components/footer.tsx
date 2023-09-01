@@ -35,8 +35,8 @@ const Footer = () => {
       <span className="privacy-policy">
         <h3>Privacy Policy</h3>
         <p>
-          <a href="mailto:neilcoleybigband@gmail.com">
-            neilcoleybigband@gmail.com{' '}
+          <a href="mailto:ncband@yahoo.co.uk">
+            ncband@yahoo.co.uk
           </a>
           <br />
           &copy; {currentYear} <br />
