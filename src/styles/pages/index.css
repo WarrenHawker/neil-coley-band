@@ -11,10 +11,6 @@
   margin: 0 auto;
 }
 
-.authentic p,
-.home-calendar p {
-  text-align: justify;
-}
 .next-gig {
   border: aliceblue solid 1px;
   text-align: center;
