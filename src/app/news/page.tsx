@@ -29,42 +29,43 @@ const fetchPosts = async () => {
   return posts;
 };
 
-const fetchGigs = async () => {
-  //@ts-expect-error
-  const res = await contentfulClient.getEntries({
-    content_type: 'gig',
-    'fields.dateTime[gte]': new Date().toISOString(),
-    order: 'fields.dateTime',
-  });
-  const data: Array<IContentfulGig> = res.items as [];
-  const gigs: IGig[] = data.map((item: IContentfulGig) => {
-    return {
-      id: item.sys.id,
-      title: item.fields.title,
-      description: item.fields.description,
-      location: item.fields.location,
-      dateTime: item.fields.dateTime,
-      imageURL: item.fields.image.fields.file.url,
-      ticketURL: item.fields.ticketUrl,
-      focused: false,
-    };
-  });
-  return gigs;
-};
+// const fetchGigs = async () => {
+//   //@ts-expect-error
+//   const res = await contentfulClient.getEntries({
+//     content_type: 'gig',
+//     'fields.dateTime[gte]': new Date().toISOString(),
+//     order: 'fields.dateTime',
+//   });
+//   const data: Array<IContentfulGig> = res.items as [];
+//   const gigs: IGig[] = data.map((item: IContentfulGig) => {
+//     return {
+//       id: item.sys.id,
+//       title: item.fields.title,
+//       description: item.fields.description,
+//       location: item.fields.location,
+//       dateTime: item.fields.dateTime,
+//       imageURL: item.fields.image.fields.file.url,
+//       ticketURL: item.fields.ticketUrl,
+//       focused: false,
+//     };
+//   });
+//   return gigs;
+// };
 
 const News = async () => {
   const postsData = fetchPosts();
-  const gigsData = fetchGigs();
+  // const gigsData = fetchGigs();
 
-  const [posts, gigs] = await Promise.all([postsData, gigsData]);
+  // const [posts, gigs] = await Promise.all([postsData, gigsData]);
+  const [posts] = await Promise.all([postsData]);
 
   return (
     <>
       <h1 className="page-title">News and Events</h1>
-      <div className="gigs-and-news">
-        <Gigs gigPosts={gigs} />
-        <NewsPosts newsPosts={posts} />
-      </div>
+      {/* <div className="gigs-and-news"> */}
+      {/* <Gigs gigPosts={gigs} /> */}
+      <NewsPosts newsPosts={posts} />
+      {/* </div> */}
     </>
   );
 };

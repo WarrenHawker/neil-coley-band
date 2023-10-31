@@ -11,6 +11,40 @@
 @import url(./abstracts/colors.css);
 @import url(./pages/music.css);
 
+/* NEW STYLES FOR V2 */
+.news-posts {
+  margin-top: 2em !important;
+}
+
+.headline-post {
+  margin-bottom: 2em !important;
+  border-bottom: 2px solid var(--color-accent) !important;
+  padding-bottom: 2em !important;
+}
+
+.headline-post.last {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.headline-post-text h3 {
+  margin-top: 0 !important;
+}
+
+.headline-post img {
+  margin: 0 auto !important;
+}
+
+.post-image img {
+  max-width: 100% !important;
+}
+
+.focused-post a {
+  color: blue;
+}
+
+/* END OF STYLES FOR V2 */
+
 *,
 *::before,
 *::after {
