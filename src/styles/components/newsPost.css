@@ -30,9 +30,9 @@
   margin-top: 2em;
 }
 
-.learn-more {
+/* .learn-more {
   color: var(--color-accent);
-}
+} */
 
 .learn-more:hover,
 .learn-more:focus {
