@@ -38,3 +38,8 @@
 .learn-more:focus {
   text-decoration: underline;
 }
+
+.posts a:hover,
+.posts a:focus {
+  text-decoration: underline;
+}
