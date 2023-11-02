@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 interface OverlayProps {
   children?: ReactNode;

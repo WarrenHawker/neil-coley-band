@@ -43,6 +43,30 @@
   color: blue;
 }
 
+.focused-post {
+  width: 100% !important;
+}
+
+.overlay-content-container {
+  position: absolute !important;
+  top: -30% !important;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .posts {
+    margin-top: 0;
+  }
+}
+
+.headline-post-mobile {
+  position: unset;
+}
+
+.headline-post-mobile.focused {
+  position: relative !important;
+}
+
 /* END OF STYLES FOR V2 */
 
 *,

@@ -2,9 +2,10 @@
 
 import { INewsPost } from '@/lib/interfaces';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Overlay from './Overlay';
 import NewsPost from './singleNewsPost';
+import { getOffset } from '@/lib/functions';
 
 interface NewsPostProps {
   newsPosts: INewsPost[];
@@ -15,7 +16,7 @@ const NewsPosts = ({ newsPosts }: NewsPostProps) => {
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
   const [focusedPost, setFocusedPost] = useState<INewsPost | null>(null);
 
-  const focusPost = (id: string) => {
+  const focusPost = (element: any, id: string) => {
     setPosts((prevPosts) => {
       return prevPosts.map((post) => {
         if (post.id == id) {
@@ -27,16 +28,15 @@ const NewsPosts = ({ newsPosts }: NewsPostProps) => {
     });
     setFocusedPost(posts.filter((post) => post.id == id)[0]);
     setShowOverlay(true);
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
   return (
     <main className="news-posts">
       <section className="posts">
-        {/* <h2>News</h2> */}
         <div className="posts-container">
           {posts.map((post, index) => {
             const lastPost = posts.length - 1;
-            // if (index == 0) {
             return (
               <>
                 <div
@@ -51,41 +51,50 @@ const NewsPosts = ({ newsPosts }: NewsPostProps) => {
                   </div>
                   <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
                 </div>
-                <div className="headline-post-mobile">
+                <div
+                  className={
+                    post.focused
+                      ? 'headline-post-mobile focused'
+                      : 'headline-post-mobile'
+                  }
+                >
                   <NewsPost key={post.id} post={post} focusPost={focusPost} />
+                  {post.focused && (
+                    <Overlay
+                      isOpen={showOverlay}
+                      setIsOpen={setShowOverlay}
+                      header={
+                        focusedPost ? (
+                          <h1 className="focused-post-title">
+                            {focusedPost.title}
+                          </h1>
+                        ) : null
+                      }
+                    >
+                      {focusedPost ? (
+                        <article className="focused-post">
+                          <div className="post-image">
+                            <img
+                              src={
+                                focusedPost.thumbnail
+                                  ? focusedPost.thumbnail
+                                  : 'logo.png'
+                              }
+                            />
+                          </div>
+                          <div className="post-body">
+                            {documentToReactComponents(focusedPost.body)}
+                          </div>
+                        </article>
+                      ) : null}
+                    </Overlay>
+                  )}
                 </div>
               </>
             );
-            // } else {
-            //   return (
-            //     <NewsPost key={post.id} post={post} focusPost={focusPost} />
-            //   );
-            // }
           })}
         </div>
       </section>
-      <Overlay
-        isOpen={showOverlay}
-        setIsOpen={setShowOverlay}
-        header={
-          focusedPost ? (
-            <h1 className="focused-post-title">{focusedPost.title}</h1>
-          ) : null
-        }
-      >
-        {focusedPost ? (
-          <article className="focused-post">
-            <div className="post-image">
-              <img
-                src={focusedPost.thumbnail ? focusedPost.thumbnail : 'logo.png'}
-              />
-            </div>
-            <div className="post-body">
-              {documentToReactComponents(focusedPost.body)}
-            </div>
-          </article>
-        ) : null}
-      </Overlay>
     </main>
   );
 };
