@@ -57,6 +57,10 @@
   .posts {
     margin-top: 0;
   }
+
+  .overlay-content {
+    width: 90vw !important;
+  }
 }
 
 .headline-post-mobile {
@@ -65,6 +69,12 @@
 
 .headline-post-mobile.focused {
   position: relative !important;
+}
+
+@media screen and (max-width: 560px) {
+  .overlay-content {
+    width: auto !important;
+  }
 }
 
 /* END OF STYLES FOR V2 */
