@@ -236,14 +236,3 @@ const getContentfulClient = () => {
 };
 
 export const contentfulClient = getContentfulClient();
-
-export const getOffset = (el: HTMLElement) => {
-  const returnRect = {
-    left: 0,
-    top: 0,
-  };
-  const rect = el.getBoundingClientRect();
-  returnRect.left = rect.left;
-  returnRect.top = rect.top;
-  return returnRect;
-};

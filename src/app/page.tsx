@@ -1,8 +1,11 @@
 import Carousel from '@/components/carousel';
 import { contentfulClient, getFullDate, getGigDate } from '@/lib/functions';
-import { IContentfulGig, IContentfulHomeText, IGig } from '@/lib/interfaces';
+import {
+  IContentfulHomeText,
+  IContentfulNewsPost,
+  IGig,
+} from '@/lib/interfaces';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { faTicket } from '@fortawesome/free-solid-svg-icons';
 
 const fetchText = async () => {
   const res = await contentfulClient.getEntries({
@@ -25,21 +28,22 @@ const fetchText = async () => {
 const fetchNextGig = async () => {
   //@ts-expect-error
   const res = await contentfulClient.getEntries({
-    content_type: 'gig',
+    content_type: 'newsPost',
     'fields.dateTime[gte]': new Date().toISOString(),
+    'fields.isGig': true,
     order: 'fields.dateTime',
     limit: 1,
   });
 
-  const data: Array<IContentfulGig> = res.items as [];
-  const gigs: IGig[] = data.map((item: IContentfulGig) => {
+  const data: Array<IContentfulNewsPost> = res.items as [];
+  const gigs: IGig[] = data.map((item: IContentfulNewsPost) => {
     return {
       id: item.sys.id,
       title: item.fields.title,
-      description: item.fields.description,
+      description: item.fields.body,
       location: item.fields.location,
       dateTime: item.fields.dateTime,
-      imageURL: item.fields.image.fields.file.url,
+      imageURL: item.fields.thumbnail?.fields.file.url || '',
       ticketURL: item.fields.ticketUrl,
       focused: false,
     };
@@ -79,9 +83,15 @@ const Home = async () => {
               <>
                 <h2>Our next gig will be:</h2>
                 <h3>{gig.title}</h3>
-                <h4>{getFullDate(gig.dateTime)}</h4>
-                <h4>{getGigDate(gig.dateTime).time}</h4>
-                <p>{gig.location}</p>
+                <h4>
+                  {getFullDate(gig.dateTime)
+                    ? getFullDate(gig.dateTime)
+                    : 'Date TBC'}
+                </h4>
+                <h4>
+                  {gig.dateTime ? getGigDate(gig.dateTime).time : 'Time TBC'}
+                </h4>
+                <p>{gig.location ? gig.location : 'Location TBC'}</p>
                 {gig.ticketURL ? (
                   <a
                     className="home-button"

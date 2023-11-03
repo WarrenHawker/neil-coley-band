@@ -2,10 +2,9 @@
 
 import { INewsPost } from '@/lib/interfaces';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Overlay from './Overlay';
 import NewsPost from './singleNewsPost';
-import { getOffset } from '@/lib/functions';
 
 interface NewsPostProps {
   newsPosts: INewsPost[];

@@ -1,6 +1,4 @@
 import { Document } from '@contentful/rich-text-types';
-import { ReactNode } from 'react';
-import { SemanticDiagnosticsBuilderProgram } from 'typescript';
 
 export type IBandSection =
   | 'Trumpets'
@@ -43,28 +41,17 @@ export interface IContentfulCarousel {
   };
 }
 
-export interface ICarousel {
-  id: string;
-  name: string;
-  photoURL: string;
-  position: number;
-}
-
-export interface IBandMember {
-  id: string;
-  name: string;
-  section: IBandSection;
-  instrument: string | undefined;
-  photoURL: string;
-  position: number;
-}
-
 export interface IContentfulNewsPost {
   sys: {
     id: string;
     createdAt: string;
+    updatedAt: string;
   };
   fields: {
+    isGig: boolean;
+    location?: string;
+    dateTime?: string;
+    ticketUrl?: string;
     slug: string;
     title: string;
     body: Document;
@@ -128,36 +115,12 @@ export interface MusicVideo {
   description: string | undefined;
 }
 
-export interface IContentfulGig {
-  sys: {
-    id: string;
-  };
-  fields: {
-    title: string;
-    description: Document | undefined;
-    location: string;
-    dateTime: string;
-    ticketUrl: string;
-    image: {
-      fields: {
-        file: {
-          url: string;
-        };
-      };
-    };
-  };
-}
-
 export interface IGig {
   id: string;
   title: string;
   description: Document | undefined;
-  location: string;
-  dateTime: string;
-  imageURL: string;
-  ticketURL: string;
-}
-
-export interface ComponentWrapper {
-  children: ReactNode;
+  location?: string;
+  dateTime?: string;
+  imageURL?: string;
+  ticketURL?: string;
 }
