@@ -4,6 +4,7 @@ import {
   IContentfulHomeText,
   IContentfulNewsPost,
   IGig,
+  IHomeText,
 } from '@/lib/interfaces';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
@@ -14,12 +15,48 @@ const fetchText = async () => {
 
   const data: Array<IContentfulHomeText> = res.items as [];
 
-  const text = data.map((item: IContentfulHomeText) => {
-    return {
-      section1: item.fields.section1,
-      homepageImage: item.fields.homepageImage.fields.file.url,
-      section2: item.fields.section2,
-    };
+  const today = new Date();
+
+  const text: IHomeText = data.map((item: IContentfulHomeText) => {
+    if (item.fields.homepageGig) {
+      if (item.fields.homepageGig.fields.dateTime) {
+        const homepageGigDate = new Date(
+          item.fields.homepageGig.fields.dateTime
+        );
+        if (homepageGigDate > today) {
+          return {
+            section1: item.fields.section1,
+            homepageImage: item.fields.homepageImage.fields.file.url,
+            section2: item.fields.section2,
+            homepageGig: {
+              id: item.fields.homepageGig.sys.id,
+              title: item.fields.homepageGig.fields.title,
+              description: item.fields.homepageGig.fields.body,
+              location: item.fields.homepageGig.fields.location,
+              dateTime: item.fields.homepageGig.fields.dateTime,
+              imageURL:
+                item.fields.homepageGig.fields.thumbnail?.fields.file.url || '',
+              ticketURL: item.fields.homepageGig.fields.ticketUrl,
+            },
+          };
+        } else
+          return {
+            section1: item.fields.section1,
+            homepageImage: item.fields.homepageImage.fields.file.url,
+            section2: item.fields.section2,
+          };
+      } else
+        return {
+          section1: item.fields.section1,
+          homepageImage: item.fields.homepageImage.fields.file.url,
+          section2: item.fields.section2,
+        };
+    } else
+      return {
+        section1: item.fields.section1,
+        homepageImage: item.fields.homepageImage.fields.file.url,
+        section2: item.fields.section2,
+      };
   })[0];
 
   return text;
@@ -56,6 +93,9 @@ const Home = async () => {
   const gigData = await fetchNextGig();
 
   const [text, gig] = await Promise.all([textsData, gigData]);
+
+  let shownGig: IGig = text.homepageGig || gig;
+
   return (
     <main>
       <Carousel />
@@ -82,20 +122,22 @@ const Home = async () => {
             {gig ? (
               <>
                 <h2>Our next gig will be:</h2>
-                <h3>{gig.title}</h3>
+                <h3>{shownGig.title}</h3>
                 <h4>
-                  {getFullDate(gig.dateTime)
-                    ? getFullDate(gig.dateTime)
+                  {getFullDate(shownGig.dateTime)
+                    ? getFullDate(shownGig.dateTime)
                     : 'Date TBC'}
                 </h4>
                 <h4>
-                  {gig.dateTime ? getGigDate(gig.dateTime).time : 'Time TBC'}
+                  {shownGig.dateTime
+                    ? getGigDate(shownGig.dateTime).time
+                    : 'Time TBC'}
                 </h4>
-                <p>{gig.location ? gig.location : 'Location TBC'}</p>
-                {gig.ticketURL ? (
+                <p>{shownGig.location ? shownGig.location : 'Location TBC'}</p>
+                {shownGig.ticketURL ? (
                   <a
                     className="home-button"
-                    href={gig.ticketURL}
+                    href={shownGig.ticketURL}
                     target="_blank"
                   >
                     Book Tickets

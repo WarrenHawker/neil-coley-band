@@ -88,7 +88,15 @@ export interface IContentfulHomeText {
       };
     };
     section2: Document;
+    homepageGig?: IContentfulNewsPost;
   };
+}
+
+export interface IHomeText {
+  section1: Document;
+  homepageImage: string;
+  section2: Document;
+  homepageGig?: IGig;
 }
 
 export interface IContentfulPageText {
