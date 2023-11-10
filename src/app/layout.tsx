@@ -1,12 +1,12 @@
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import '../styles/globals.css';
-import { ComponentWrapper } from '@/lib/interfaces';
+import { PropsWithChildren } from 'react';
 export const metadata = {
   title: 'Neil Coley Band',
 };
 
-const RootLayout = ({ children }: ComponentWrapper) => {
+const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="en">
       <head>

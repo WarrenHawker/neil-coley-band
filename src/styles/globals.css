@@ -11,6 +11,74 @@
 @import url(./abstracts/colors.css);
 @import url(./pages/music.css);
 
+/* NEW STYLES FOR V2 */
+.news-posts {
+  margin-top: 2em !important;
+}
+
+.headline-post {
+  margin-bottom: 2em !important;
+  border-bottom: 2px solid var(--color-accent) !important;
+  padding-bottom: 2em !important;
+}
+
+.headline-post.last {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.headline-post-text h3 {
+  margin-top: 0 !important;
+}
+
+.headline-post img {
+  margin: 0 auto !important;
+}
+
+.post-image img {
+  max-width: 100% !important;
+}
+
+.focused-post a {
+  color: blue;
+}
+
+.focused-post {
+  width: 100% !important;
+}
+
+.overlay-content-container {
+  position: absolute !important;
+  top: -30% !important;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .posts {
+    margin-top: 0;
+  }
+
+  .overlay-content {
+    width: 90vw !important;
+  }
+}
+
+.headline-post-mobile {
+  position: unset;
+}
+
+.headline-post-mobile.focused {
+  position: relative !important;
+}
+
+@media screen and (max-width: 560px) {
+  .overlay-content {
+    width: auto !important;
+  }
+}
+
+/* END OF STYLES FOR V2 */
+
 *,
 *::before,
 *::after {

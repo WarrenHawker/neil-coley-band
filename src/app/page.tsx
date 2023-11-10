@@ -1,8 +1,12 @@
 import Carousel from '@/components/carousel';
 import { contentfulClient, getFullDate, getGigDate } from '@/lib/functions';
-import { IContentfulGig, IContentfulHomeText, IGig } from '@/lib/interfaces';
+import {
+  IContentfulHomeText,
+  IContentfulNewsPost,
+  IGig,
+  IHomeText,
+} from '@/lib/interfaces';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { faTicket } from '@fortawesome/free-solid-svg-icons';
 
 const fetchText = async () => {
   const res = await contentfulClient.getEntries({
@@ -11,12 +15,48 @@ const fetchText = async () => {
 
   const data: Array<IContentfulHomeText> = res.items as [];
 
-  const text = data.map((item: IContentfulHomeText) => {
-    return {
-      section1: item.fields.section1,
-      homepageImage: item.fields.homepageImage.fields.file.url,
-      section2: item.fields.section2,
-    };
+  const today = new Date();
+
+  const text: IHomeText = data.map((item: IContentfulHomeText) => {
+    if (item.fields.homepageGig) {
+      if (item.fields.homepageGig.fields.dateTime) {
+        const homepageGigDate = new Date(
+          item.fields.homepageGig.fields.dateTime
+        );
+        if (homepageGigDate > today) {
+          return {
+            section1: item.fields.section1,
+            homepageImage: item.fields.homepageImage.fields.file.url,
+            section2: item.fields.section2,
+            homepageGig: {
+              id: item.fields.homepageGig.sys.id,
+              title: item.fields.homepageGig.fields.title,
+              description: item.fields.homepageGig.fields.body,
+              location: item.fields.homepageGig.fields.location,
+              dateTime: item.fields.homepageGig.fields.dateTime,
+              imageURL:
+                item.fields.homepageGig.fields.thumbnail?.fields.file.url || '',
+              ticketURL: item.fields.homepageGig.fields.ticketUrl,
+            },
+          };
+        } else
+          return {
+            section1: item.fields.section1,
+            homepageImage: item.fields.homepageImage.fields.file.url,
+            section2: item.fields.section2,
+          };
+      } else
+        return {
+          section1: item.fields.section1,
+          homepageImage: item.fields.homepageImage.fields.file.url,
+          section2: item.fields.section2,
+        };
+    } else
+      return {
+        section1: item.fields.section1,
+        homepageImage: item.fields.homepageImage.fields.file.url,
+        section2: item.fields.section2,
+      };
   })[0];
 
   return text;
@@ -25,21 +65,22 @@ const fetchText = async () => {
 const fetchNextGig = async () => {
   //@ts-expect-error
   const res = await contentfulClient.getEntries({
-    content_type: 'gig',
+    content_type: 'newsPost',
     'fields.dateTime[gte]': new Date().toISOString(),
+    'fields.isGig': true,
     order: 'fields.dateTime',
     limit: 1,
   });
 
-  const data: Array<IContentfulGig> = res.items as [];
-  const gigs: IGig[] = data.map((item: IContentfulGig) => {
+  const data: Array<IContentfulNewsPost> = res.items as [];
+  const gigs: IGig[] = data.map((item: IContentfulNewsPost) => {
     return {
       id: item.sys.id,
       title: item.fields.title,
-      description: item.fields.description,
+      description: item.fields.body,
       location: item.fields.location,
       dateTime: item.fields.dateTime,
-      imageURL: item.fields.image.fields.file.url,
+      imageURL: item.fields.thumbnail?.fields.file.url || '',
       ticketURL: item.fields.ticketUrl,
       focused: false,
     };
@@ -52,6 +93,9 @@ const Home = async () => {
   const gigData = await fetchNextGig();
 
   const [text, gig] = await Promise.all([textsData, gigData]);
+
+  let shownGig: IGig = text.homepageGig || gig;
+
   return (
     <main>
       <Carousel />
@@ -78,14 +122,22 @@ const Home = async () => {
             {gig ? (
               <>
                 <h2>Our next gig will be:</h2>
-                <h3>{gig.title}</h3>
-                <h4>{getFullDate(gig.dateTime)}</h4>
-                <h4>{getGigDate(gig.dateTime).time}</h4>
-                <p>{gig.location}</p>
-                {gig.ticketURL ? (
+                <h3>{shownGig.title}</h3>
+                <h4>
+                  {getFullDate(shownGig.dateTime)
+                    ? getFullDate(shownGig.dateTime)
+                    : 'Date TBC'}
+                </h4>
+                <h4>
+                  {shownGig.dateTime
+                    ? getGigDate(shownGig.dateTime).time
+                    : 'Time TBC'}
+                </h4>
+                <p>{shownGig.location ? shownGig.location : 'Location TBC'}</p>
+                {shownGig.ticketURL ? (
                   <a
                     className="home-button"
-                    href={gig.ticketURL}
+                    href={shownGig.ticketURL}
                     target="_blank"
                   >
                     Book Tickets

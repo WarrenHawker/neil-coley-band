@@ -4,12 +4,12 @@ import { documentToPlainTextString } from '@contentful/rich-text-plain-text-rend
 
 interface NewsPostProps {
   post: INewsPost;
-  focusPost: (id: string) => void;
+  focusPost: (element: any, id: string) => void;
 }
 
 const NewsPost = ({ post, focusPost }: NewsPostProps) => {
   return (
-    <article className="post" onClick={() => focusPost(post.id)}>
+    <article className="post" onClick={(e) => focusPost(e.target, post.id)}>
       <h3 className="post-title">{post.title}</h3>
       <div className="post-thumbnail">
         <img src={post.thumbnail ? post.thumbnail : 'logo.png'} />
