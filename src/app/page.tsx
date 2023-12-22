@@ -121,7 +121,7 @@ const Home = async () => {
           <span className="next-gig">
             {gig ? (
               <>
-                <h2>Our next gig will be:</h2>
+                <h2>Upcoming Featured Gig</h2>
                 <h3>{shownGig.title}</h3>
                 <h4>
                   {getFullDate(shownGig.dateTime)
