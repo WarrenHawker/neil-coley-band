@@ -2,8 +2,8 @@ import {
   IBandSection,
   IContentfulPageText,
   IContentfulBandMember,
-} from '../../lib/interfaces';
-import BandMember from '@/components/bandMember';
+} from '../../../lib/interfaces';
+import BandMember from '@/app/(frontend)/components/bandMember';
 import { contentfulClient } from '@/lib/functions';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 

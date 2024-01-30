@@ -30,6 +30,9 @@ const Footer = () => {
             {' '}
             <a href="/music">Our Music</a>
           </li>
+          <li>
+            <a href="/admin">Admin</a>
+          </li>
         </ul>
       </span>
       <span className="privacy-policy">

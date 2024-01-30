@@ -1,4 +1,4 @@
-import MusicVideos from '@/components/musicVideos';
+import MusicVideos from '@/app/(frontend)/components/musicVideos';
 import { contentfulClient } from '@/lib/functions';
 import { IContentfulMusic, IContentfulPageText } from '@/lib/interfaces';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';

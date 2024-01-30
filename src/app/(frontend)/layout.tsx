@@ -1,6 +1,6 @@
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import '../styles/globals.css';
+import Header from '@/app/(frontend)/components/header';
+import Footer from '@/app/(frontend)/components/footer';
+import './styles/globals.css';
 import { PropsWithChildren } from 'react';
 export const metadata = {
   title: 'Neil Coley Band',

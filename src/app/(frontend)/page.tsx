@@ -1,4 +1,4 @@
-import Carousel from '@/components/carousel';
+import Carousel from '@/app/(frontend)/components/carousel';
 import { contentfulClient, getFullDate, getGigDate } from '@/lib/functions';
 import {
   IContentfulHomeText,

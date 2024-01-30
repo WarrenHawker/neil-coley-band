@@ -1,6 +1,6 @@
 import { IContentfulNewsPost, INewsPost } from '@/lib/interfaces';
 import { contentfulClient } from '@/lib/functions';
-import NewsPosts from '@/components/newsPosts';
+import NewsPosts from '@/app/(frontend)/components/newsPosts';
 
 const fetchPosts = async () => {
   const res = await contentfulClient.getEntries({
